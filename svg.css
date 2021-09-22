@@ -1,0 +1,29 @@
+rect {
+    fill: transparent;
+    stroke-width: 7;
+}
+
+circle {
+    stroke-width: 3;
+}
+
+path {
+    fill: lightgreen;
+    stroke: green;
+    stroke-width: 2;
+}
+
+polygon {
+    fill: green;
+    stroke:black;
+    stroke-width: 2;
+}
+
+.red {
+    fill: #ff9999;
+    stroke: #ff0000;
+}
+
+.gray {
+    stroke: #707070;
+}

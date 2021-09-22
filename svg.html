@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My SVG</title>
+    <link href="svg.css" rel="stylesheet">
+</head>
+<body>
+<h1>
+    My SVG!
+</h1>
+
+<div>
+    <svg width="500" height="500">
+        <!-- "pin" on top -->
+        <circle class="red" r="10" cx="250" cy="80"/>
+        <!-- "hills" -->
+        <path d="M 50 400 Q 125 295 300 350 Q 350 275 450 275 L 450 450 L 50 450" />
+        <!-- "tree" -->
+        <polygon points="150,400 150,320 100,320 150,260, 125,260, 165,200, 205,260 180,260 230,320 180,320 180,400" />
+        <!-- "paper" background -->
+        <rect class="gray" x="50" y="50" width="400" height="400" />
+    </svg>
+</div>
+
+<p>
+    Above is my SVG. This is a picture of a drawing someone made on a sheet of paper. This drawing is of a
+    tree on rolling hills, and the sheet of paper is pinned to something.
+</p>
+
+<ul>
+    <li><b><code>rect</code></b>: The paper that the picture is drawn on.</li>
+    <li><b><code>circle</code></b>: The pin that holds the paper to something else (a bulletin board, maybe?).</li>
+    <li><b><code>path</code></b>: The hills.</li>
+    <li><b><code>polygon</code></b>: The tree.</li>
+</ul>
+
+<p>
+    <a href="index.html"> Back to Index</a>
+</p>
+
+</body>
+</html>
