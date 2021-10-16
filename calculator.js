@@ -7,15 +7,11 @@ document.body.appendChild(resultsTable);
 // insert a header row into the table
 insertRow(resultsTable, ['x', 'op', 'y', 'result'], true);
 
-// DELETE THIS
-// document.write("<table>");
-// document.write("<tr><th>header1</th><th>header2</th></tr>");
-// document.write("</table>");
-
 // holds some stuff
 let resultsArray = [];
 let continueLoop = true;
 
+// loops over and over to get calculator values
 while (continueLoop) {
     // get the three values
     let xRaw = prompt("Value of x");
@@ -70,7 +66,6 @@ while (continueLoop) {
     // append to first table
     insertRow(resultsTable, [xRaw, operatorVal, yRaw, resultString], false);
     // colors operator node (last row, second column) light green
-    console.log("row count: " + resultsTable.rows.length);
     resultsTable.rows[resultsTable.rows.length - 1].cells[1].style.backgroundColor = "lightgreen";
 
     // get confirmation if user wants to repeat
@@ -99,6 +94,11 @@ if (resultsArray.length > 0) {
     insertRow(averageTable, [roundNum(min, 4), roundNum(max, 4), roundNum(average, 4), roundNum(total, 4)])
 }
 
+// at the end, just append a link back to index.html
+let link = document.createElement('a');
+link.setAttribute('href', 'index.html');
+link.textContent = "Back to Index";
+document.body.appendChild(link);
 
 /**
  * This function adds a row into the table.
