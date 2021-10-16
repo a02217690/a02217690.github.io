@@ -7,6 +7,10 @@
 </head>
 <body>
 
+<h1>
+    Sign-Up Form
+</h1>
+
 <form name="form">
     <div>
         <label class="input-label" for="username">Username: </label>
@@ -58,8 +62,38 @@
             </select>
         </div>
     </div>
+    <div>
+        <div class="input-label no-padding" >
+            Favorite Music Genre
+        </div>
+        <div class="no-padding" style="display: inline-block">
+            <input type="checkbox" id="pop" name="pop" />
+            <label for="pop">Pop</label>
+            <input type="checkbox" id="hiphop" name="hiphop" />
+            <label for="hiphop">Hiphop</label>
+            <input type="checkbox" id="jazz" name="jazz" />
+            <label for="jazz">Jazz</label>
+            <input type="checkbox" id="rock" name="rock" />
+            <label for="rock">Rock</label>
+            <input type="checkbox" id="classical" name="classical" />
+            <label for="classical">Classical music</label>
+            <input type="checkbox" id="country" name="country" />
+            <label for="country">Country</label>
+        </div>
+    </div>
+    <div>
+        <div class="input-label no-padding">
+
+        </div>
+        <div class="no-padding" style="display: inline-block">
+            <input type="button" name="submit" value="Submit">
+            <input type="reset" name="clear" value="Clear">
+        </div>
+    </div>
 </form>
 
+<br />
+<br />
 <a href="index.html"> Back to Index </a>
 
 <script src="form.js"></script>
