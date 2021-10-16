@@ -49,9 +49,22 @@ function validateAllInputs() {
     let email = document.getElementById('email').value;
     let emailIsValid = /^.+@.+\.(net|com|org|edu)$/.test(email);
 
+    // phone number: format XXX-XXX-XXXX
+    let phoneNumber = document.getElementById('phone').value;
+    let phoneNumberIsValid = /^([0-9]{3}-){2}[0-9]{4}$/.test(phoneNumber);
+
+    // password: 1 uppercase, 1 lowercase, 1 number, 1 special character
+    let password = document.getElementById('password').value;
+    let passwordIsValid = (/^.*[A-Z].*$/.test(password) &&
+                           /^.*[a-z].*$/.test(password) &&
+                           /^.*[0-9].*$/.test(password) &&
+                           /^.*[^A-Za-z0-9].*$/.test(password));
+
     // Debug statements, comment out before release
     console.log('Username ' + userName + (userNameIsValid ? " is valid" : " is not valid"));
     console.log('Email ' + email + (emailIsValid ? " is valid" : " is not valid"));
+    console.log('Phone number ' + phoneNumber + (phoneNumberIsValid ? " is valid" : " is not valid"));
+    console.log('Password ' + password + (passwordIsValid ? " is valid" : " is not valid"));
 
     let isValid = false;
     return isValid;
