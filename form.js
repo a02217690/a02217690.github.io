@@ -34,3 +34,25 @@ function addToSelectElement(selectElement, elementsToAdd) {
         selectElement.appendChild(newOption);
     }
 }
+
+/**
+ * Checks to see if all inputs are valid or not.
+ *
+ * @returns {boolean} whether it is true or false
+ */
+function validateAllInputs() {
+    // username: lowercase letters, numbers, between 4-12 characters
+    let userName = document.getElementById('username').value;
+    let userNameIsValid = /^[a-z0-9]{4,12}$/.test(userName);
+
+    // email: contains @, ends in .net/.org/.com/.edu
+    let email = document.getElementById('email').value;
+    let emailIsValid = /^.+@.+\.(net|com|org|edu)$/.test(email);
+
+    // Debug statements, comment out before release
+    console.log('Username ' + userName + (userNameIsValid ? " is valid" : " is not valid"));
+    console.log('Email ' + email + (emailIsValid ? " is valid" : " is not valid"));
+
+    let isValid = false;
+    return isValid;
+}
