@@ -3,8 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign-up Form</title>
+    <link href="form.css" rel="stylesheet">
 </head>
 <body>
+
+<form name="form">
+<div>
+    <label class="input-label" for="username">Username: </label>
+    <input type="text" id="username" />
+</div>
+<div>
+    <label class="input-label" for="email">Email: </label>
+    <input type="text" id="email" />
+</div>
+<div>
+    <label class="input-label" for="phone">Phone number: </label>
+    <input type="text" id="phone" />
+</div>
+<div>
+    <label class="input-label" for="password">Enter Password: </label>
+    <input type="password" id="password" />
+</div>
+<div>
+    <label class="input-label" for="confirm-password">Confirm Password: </label>
+    <input type="text" id="confirm-password" />
+</div>
+<div>
+    <div class="input-label no-padding">
+        Gender:
+    </div>
+    <div class="no-padding" style="display: inline-block">
+        <input type="radio" id="female" name="gender" />
+        <label for="female">Female</label>
+        <input type="radio" id="male" name="gender" />
+        <label for="male">Male</label>
+        <input type="radio" id="other" name="gender" />
+        <label for="other">Other</label>
+    </div>
+</div>
+</form>
+
+<a href="index.html"> Back to Index </a>
 
 </body>
 </html>

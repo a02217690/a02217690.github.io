@@ -1,0 +1,13 @@
+.input-label {
+    text-align: right;
+    width: 200px;
+    display: inline-block;
+}
+
+div {
+    padding: 5px;
+}
+
+.no-padding {
+    padding: 0;
+}
