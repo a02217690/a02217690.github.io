@@ -8,42 +8,61 @@
 <body>
 
 <form name="form">
-<div>
-    <label class="input-label" for="username">Username: </label>
-    <input type="text" id="username" />
-</div>
-<div>
-    <label class="input-label" for="email">Email: </label>
-    <input type="text" id="email" />
-</div>
-<div>
-    <label class="input-label" for="phone">Phone number: </label>
-    <input type="text" id="phone" />
-</div>
-<div>
-    <label class="input-label" for="password">Enter Password: </label>
-    <input type="password" id="password" />
-</div>
-<div>
-    <label class="input-label" for="confirm-password">Confirm Password: </label>
-    <input type="text" id="confirm-password" />
-</div>
-<div>
-    <div class="input-label no-padding">
-        Gender:
+    <div>
+        <label class="input-label" for="username">Username: </label>
+        <input type="text" id="username" />
     </div>
-    <div class="no-padding" style="display: inline-block">
-        <input type="radio" id="female" name="gender" />
-        <label for="female">Female</label>
-        <input type="radio" id="male" name="gender" />
-        <label for="male">Male</label>
-        <input type="radio" id="other" name="gender" />
-        <label for="other">Other</label>
+    <div>
+        <label class="input-label" for="email">Email: </label>
+        <input type="text" id="email" />
     </div>
-</div>
+    <div>
+        <label class="input-label" for="phone">Phone number: </label>
+        <input type="text" id="phone" />
+    </div>
+    <div>
+        <label class="input-label" for="password">Enter Password: </label>
+        <input type="password" id="password" />
+    </div>
+    <div>
+        <label class="input-label" for="confirm-password">Confirm Password: </label>
+        <input type="text" id="confirm-password" />
+    </div>
+    <div>
+        <div class="input-label no-padding">
+            Gender:
+        </div>
+        <div class="no-padding" style="display: inline-block">
+            <input type="radio" id="female" name="gender" />
+            <label for="female">Female</label>
+            <input type="radio" id="male" name="gender" />
+            <label for="male">Male</label>
+            <input type="radio" id="other" name="gender" />
+            <label for="other">Other</label>
+        </div>
+    </div>
+    <div>
+        <div class="input-label no-padding">
+            Birth Day:
+        </div>
+        <div class="no-padding" style="display: inline-block">
+            <!-- use JS to handle populating these more easily -->
+            <select name="month" id="month">
+                <option value="none"></option>
+            </select>
+            <select name="day" id="day">
+                <option value="none"></option>
+            </select>
+            <select name="year" id="year">
+                <option value="none"></option>
+            </select>
+        </div>
+    </div>
 </form>
 
 <a href="index.html"> Back to Index </a>
+
+<script src="form.js"></script>
 
 </body>
 </html>
