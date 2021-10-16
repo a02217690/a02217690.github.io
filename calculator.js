@@ -1,56 +1,37 @@
 // create tables with ID (so we can reference it later
-// https://stackoverflow.com/a/14644462
 // create results table
 let resultsTable = document.createElement('table');
 resultsTable.setAttribute('id', 'resultsTable');
-//
-// let resultsHeader = resultsTable.createTHead();
-// resultsHeaderRow = resultsHeader.insertRow();
-//
-// let th = document.createElement('th');
-// th.innerText = "x";
-// resultsHeaderRow.appendChild(th);
-//
-// th = document.createElement('th');
-// th.innerText = "op";
-// resultsHeaderRow.appendChild(th);
-//
-// th = document.createElement('th');
-// th.innerText = "y";
-// resultsHeaderRow.appendChild(th);
-//
-// th = document.createElement('th');
-// th.innerText = "result";
-// resultsHeaderRow.appendChild(th);
-
 document.body.appendChild(resultsTable);
 
+// insert a header row into the table
 insertRow(resultsTable, ['x', 'op', 'y', 'result'], true);
 
-let averageTable = document.createElement('table');
-averageTable.setAttribute('id', 'averageTable');
-
-//DELETE THIS
-document.write("<table>");
-document.write("<tr><th>header1</th><th>header2</th></tr>");
-document.write("</table>");
+// DELETE THIS
+// document.write("<table>");
+// document.write("<tr><th>header1</th><th>header2</th></tr>");
+// document.write("</table>");
 
 // holds some stuff
 let resultsArray = [];
 let continueLoop = true;
+
+// DELETE THIS
 // let continueLoop = false;
 
 while (continueLoop) {
     // get the three values
-    let xVal = prompt("Value of x");
+    let xRaw = prompt("Value of x");
+    let xVal = parseFloat(xRaw);
     let operatorVal = prompt("Operator (+, -, %, /, *)");
-    let yVal = prompt("Value of y");
+    let yRaw = prompt("Value of y");
+    let yVal = parseFloat(yRaw);
 
     let result = 0;
     let resultString = "";
 
     // validate x, op, y
-    if (isNaN(parseFloat(xVal)) || isNaN(parseFloat(yVal))) {
+    if (isNaN((xVal)) || isNaN(yVal)) {
         result = NaN;
         resultString = "bad input number"
     } else {
@@ -66,7 +47,7 @@ while (continueLoop) {
                 break;
             case "/":
                 // check for divide by 0
-                if (parseFloat(yVal) === 0) {
+                if (yVal === 0) {
                     result = NaN;
                     resultString = "divide by 0: undefined";
                 } else {
@@ -89,20 +70,39 @@ while (continueLoop) {
         }
     }
 
-    console.log("x value: " + xVal);
+    console.log("x value: " + xRaw);
     console.log("operator: " + operatorVal);
-    console.log("y value: " + yVal);
+    console.log("y value: " + yRaw);
     console.log("result: " + resultString);
+
     // append to first table
+    insertRow(resultsTable, [xRaw, operatorVal, yRaw, resultString], false);
 
     // get confirmation if user wants to repeat
     continueLoop = confirm("Continue loop?");
 }
 
-console.log("Final results");
-for (const result of resultsArray) {
-    console.log(result)
+// create tables of min/max/average
+let averageTable = document.createElement('table');
+averageTable.setAttribute('id', 'averageTable');
+document.body.appendChild(averageTable);
+
+insertRow(averageTable, ['Min', "Max", "Average", "Total"], true);
+
+// only calculate these if we have at least one result
+if (resultsArray.length > 0) {
+    // calculate min, max, total, average
+    let min = Math.min(...resultsArray);    // spread syntax: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+    let max = Math.max(...resultsArray);
+    let total = 0;
+    for (const result of resultsArray) {
+        total += result;
+    }
+    let average = total / resultsArray.length;
+
+    insertRow(averageTable, [min, max, average, total]);
 }
+
 
 /**
  * This function adds a row into the table.
@@ -111,22 +111,31 @@ for (const result of resultsArray) {
  * @param elements An array of elements
  * @param isHeader Boolean for whether this is a header or not
  */
-function insertRow(table, elements, isHeader) {
+function insertRow(table, elements, isHeader=false) {
+    // inserts tTHead and TBody if needed
+    if (table.tHead == null) {
+        table.createTHead();
+    }
+    if (table.tBodies.length === 0) {
+        table.createTBody();
+    }
 
     // defines the table row and inserts it into thead or tbody
     let row;
     if (isHeader) {
-        row = resultsTable.createTHead().insertRow();
+        row = table.tHead.insertRow();
     } else {
-        row = table.insertRow();
+        row = table.tBodies[0].insertRow();
     }
+
     let tagName = isHeader ? 'th' : 'td';
 
     // for each element, add it to the row
     for (elem of elements) {
-        if (isHeader)
-        cell = document.createElement(tagName);
+        console.log(typeof elem);
+        let cell = document.createElement(tagName);
         cell.innerText = elem;
         row.appendChild(cell);
+        console.log('Appended ' + elem)
     }
 }
