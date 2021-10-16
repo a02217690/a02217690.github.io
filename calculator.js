@@ -16,9 +16,6 @@ insertRow(resultsTable, ['x', 'op', 'y', 'result'], true);
 let resultsArray = [];
 let continueLoop = true;
 
-// DELETE THIS
-// let continueLoop = false;
-
 while (continueLoop) {
     // get the three values
     let xRaw = prompt("Value of x");
@@ -65,18 +62,16 @@ while (continueLoop) {
 
         // set resultString value
         if (!(isNaN(result))) {
-            resultString = result.toString();
+            resultString = roundNum(result, 4);
             resultsArray.push(result);
         }
     }
 
-    console.log("x value: " + xRaw);
-    console.log("operator: " + operatorVal);
-    console.log("y value: " + yRaw);
-    console.log("result: " + resultString);
-
     // append to first table
     insertRow(resultsTable, [xRaw, operatorVal, yRaw, resultString], false);
+    // colors operator node (last row, second column) light green
+    console.log("row count: " + resultsTable.rows.length);
+    resultsTable.rows[resultsTable.rows.length - 1].cells[1].style.backgroundColor = "lightgreen";
 
     // get confirmation if user wants to repeat
     continueLoop = confirm("Continue loop?");
@@ -87,6 +82,7 @@ let averageTable = document.createElement('table');
 averageTable.setAttribute('id', 'averageTable');
 document.body.appendChild(averageTable);
 
+// insert header row
 insertRow(averageTable, ['Min', "Max", "Average", "Total"], true);
 
 // only calculate these if we have at least one result
@@ -100,7 +96,7 @@ if (resultsArray.length > 0) {
     }
     let average = total / resultsArray.length;
 
-    insertRow(averageTable, [min, max, average, total]);
+    insertRow(averageTable, [roundNum(min, 4), roundNum(max, 4), roundNum(average, 4), roundNum(total, 4)])
 }
 
 
@@ -131,11 +127,21 @@ function insertRow(table, elements, isHeader=false) {
     let tagName = isHeader ? 'th' : 'td';
 
     // for each element, add it to the row
-    for (elem of elements) {
-        console.log(typeof elem);
+    for (const elem of elements) {
         let cell = document.createElement(tagName);
         cell.innerText = elem;
         row.appendChild(cell);
-        console.log('Appended ' + elem)
     }
+}
+
+/**
+ * This function rounds a number to a specific number of decimal places.
+ * https://stackoverflow.com/a/9453443
+ *
+ * @param number An input number to round.
+ * @param precision The number of decimal places to round to.
+ * @returns {number} The number rounded to a specific number of decimal places.
+ */
+function roundNum(number, precision) {
+    return Number(number.toFixed(precision))
 }
