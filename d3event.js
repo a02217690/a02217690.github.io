@@ -67,7 +67,10 @@ let mouseDiv = d3.select('body').append('div')
     .attr('id', 'mouseDiv')
     .text("Mouse: ");
 
-// iconSpan.on('mousemove', () => mouseDiv.text("Mouse X: "));
+// add link back to main
+d3.select('body').append('p').append('a')
+    .attr('href', 'index.html')
+    .text('Back to Index');
 
 /**
  * Handles a mouse enter on an object.
@@ -91,6 +94,11 @@ function mouseLeave(iconObject, iconName) {
     iconObject.style('opacity', 1.0);
 }
 
+/**
+ * Adds (or removes) padding to an object
+ * @param iconObject The icon object to pad
+ * @param pad Whether to pad or not
+ */
 function addPadding(iconObject, pad) {
     if (pad) {
         iconObject.style('padding-left', "20px");
