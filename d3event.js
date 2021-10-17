@@ -12,6 +12,9 @@ let twitter = iconSpan.append('img')
     .attr('id', 'twitter')
     .on('mouseenter', () => mouseEnter(twitter, 'Twitter'))
     .on('mouseleave', () => mouseLeave(twitter, 'Twitter'))
+    .on('mousedown', () => addPadding(twitter, true))
+    .on('mouseup', () => addPadding(twitter, false))
+    .on('dblclick', () => window.open('https://www.twitter.com', '_blank'));
 
 let facebook = iconSpan.append('img')
     .attr('src', 'images/facebook.png')
@@ -19,6 +22,9 @@ let facebook = iconSpan.append('img')
     .attr('height', 100)
     .on('mouseenter', () => mouseEnter(facebook, 'Facebook'))
     .on('mouseleave', () => mouseLeave(facebook, 'Facebook'))
+    .on('mousedown', () => addPadding(facebook, true))
+    .on('mouseup', () => addPadding(facebook, false))
+    .on('dblclick', () => window.open('https://www.facebook.com', '_blank'));
 
 let reddit = iconSpan.append('img')
     .attr('src', 'images/reddit.png')
@@ -26,6 +32,9 @@ let reddit = iconSpan.append('img')
     .attr('height', 100)
     .on('mouseenter', () => mouseEnter(reddit, 'Reddit'))
     .on('mouseleave', () => mouseLeave(reddit, 'Reddit'))
+    .on('mousedown', () => addPadding(reddit, true))
+    .on('mouseup', () => addPadding(reddit, false))
+    .on('dblclick', () => window.open('https://www.reddit.com', '_blank'));
 
 let linkedin = iconSpan.append('img')
     .attr('src', 'images/linkedin.png')
@@ -33,6 +42,9 @@ let linkedin = iconSpan.append('img')
     .attr('height', 100)
     .on('mouseenter', () => mouseEnter(linkedin, 'LinkedIn'))
     .on('mouseleave', () => mouseLeave(linkedin, 'LinkedIn'))
+    .on('mousedown', () => addPadding(linkedin, true))
+    .on('mouseup', () => addPadding(linkedin, false))
+    .on('dblclick', () => window.open('https://www.linkedin.com', '_blank'));
 
 let instagram = iconSpan.append('img')
     .attr('src', 'images/instagram.jpg')
@@ -40,6 +52,9 @@ let instagram = iconSpan.append('img')
     .attr('height', 100)
     .on('mouseenter', () => mouseEnter(instagram, 'Instagram'))
     .on('mouseleave', () => mouseLeave(instagram, 'Instagram'))
+    .on('mousedown', () => addPadding(instagram, true))
+    .on('mouseup', () => addPadding(instagram, false))
+    .on('dblclick', () => window.open('https://www.instagram.com', '_blank'));
 
 // add three divs
 let inDiv = d3.select('body').append('div')
@@ -76,3 +91,12 @@ function mouseLeave(iconObject, iconName) {
     iconObject.style('opacity', 1.0);
 }
 
+function addPadding(iconObject, pad) {
+    if (pad) {
+        iconObject.style('padding-left', "20px");
+        iconObject.style('padding-right', "20px");
+    } else {
+        iconObject.style('padding-left', "0px");
+        iconObject.style('padding-right', "0px");
+    }
+}
