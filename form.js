@@ -60,11 +60,47 @@ function validateAllInputs() {
                            /^.*[0-9].*$/.test(password) &&
                            /^.*[^A-Za-z0-9].*$/.test(password));
 
+    // confirm password: must be same as password
+    let confirmPassword = document.getElementById('confirm-password').value;
+    let confirmPasswordIsValid = (confirmPassword === password);
+
+    // gender: one of the three radio buttons must be checked
+    let genderButtons = document.getElementsByName('gender');
+    let gender = null;
+    for (const button of genderButtons) {
+        if (button.checked) {
+            gender = button.id;
+            break;
+        }
+    }
+    let genderIsValid = (gender != null);
+
+    // birthday: all three birthdays must not be empty
+    let birthdayMonth = document.getElementById('month').value;
+    let birthdayDate = document.getElementById('day').value;
+    let birthdayYear = document.getElementById('year').value;
+    let birthdayIsValid = (birthdayYear !== "none" && birthdayMonth !== "none" && birthdayDate !== "none");
+
+    // music: at least one checkbox is checked
+    let popChecked = document.getElementById('pop').checked;
+    let hiphopChecked = document.getElementById('hiphop').checked;
+    let jazzChecked = document.getElementById('jazz').checked;
+    let rockChecked = document.getElementById('rock').checked;
+    let classicalChecked = document.getElementById('classical').checked;
+    let countryChecked = document.getElementById('country').checked;
+    let musicIsValid = (popChecked || hiphopChecked || jazzChecked || rockChecked
+                        || classicalChecked || countryChecked);
+
+
     // Debug statements, comment out before release
     console.log('Username ' + userName + (userNameIsValid ? " is valid" : " is not valid"));
     console.log('Email ' + email + (emailIsValid ? " is valid" : " is not valid"));
     console.log('Phone number ' + phoneNumber + (phoneNumberIsValid ? " is valid" : " is not valid"));
     console.log('Password ' + password + (passwordIsValid ? " is valid" : " is not valid"));
+    console.log('Confirm password ' + confirmPassword + (confirmPasswordIsValid ? " is valid" : " is not valid"));
+    console.log('Gender ' + gender + (genderIsValid ? " is valid" : " is not valid"));
+    console.log('Birthday' + (birthdayIsValid ? " is valid" : " is not valid"));
+    console.log('Music' + (musicIsValid ? " is valid" : " is not valid"));
 
     let isValid = false;
     return isValid;
