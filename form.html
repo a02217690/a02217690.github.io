@@ -30,7 +30,7 @@
     </div>
     <div>
         <label class="input-label" for="confirm-password">Confirm Password: </label>
-        <input type="text" id="confirm-password" />
+        <input type="password" id="confirm-password" />
     </div>
     <div>
         <div class="input-label no-padding">
@@ -87,10 +87,12 @@
         </div>
         <div class="no-padding" style="display: inline-block">
             <input type="button" name="submit" value="Submit" onclick="validateAllInputs()">
-            <input type="reset" name="clear" value="Clear">
+            <input type="reset" name="clear" value="Clear" onclick="clearWarnings()">
         </div>
     </div>
 </form>
+
+<div id="warnings-holder" class="no-padding"></div>
 
 <br />
 <br />

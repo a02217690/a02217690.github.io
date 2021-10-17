@@ -36,11 +36,13 @@ function addToSelectElement(selectElement, elementsToAdd) {
 }
 
 /**
- * Checks to see if all inputs are valid or not.
- *
- * @returns {boolean} whether it is true or false
+ * Checks to see if all inputs are valid or not. If valid,
+ * then redirect to index.html
  */
 function validateAllInputs() {
+    // first, clear out warning box
+    clearWarnings();
+
     // username: lowercase letters, numbers, between 4-12 characters
     let userName = document.getElementById('username').value;
     let userNameIsValid = /^[a-z0-9]{4,12}$/.test(userName);
@@ -91,7 +93,6 @@ function validateAllInputs() {
     let musicIsValid = (popChecked || hiphopChecked || jazzChecked || rockChecked
                         || classicalChecked || countryChecked);
 
-
     // Debug statements, comment out before release
     console.log('Username ' + userName + (userNameIsValid ? " is valid" : " is not valid"));
     console.log('Email ' + email + (emailIsValid ? " is valid" : " is not valid"));
@@ -102,6 +103,78 @@ function validateAllInputs() {
     console.log('Birthday' + (birthdayIsValid ? " is valid" : " is not valid"));
     console.log('Music' + (musicIsValid ? " is valid" : " is not valid"));
 
-    let isValid = false;
-    return isValid;
+    // check confirm password LAST
+    let inputsAreValid = userNameIsValid && emailIsValid && phoneNumberIsValid &&
+                         passwordIsValid && genderIsValid && birthdayIsValid && musicIsValid;
+    if (inputsAreValid) {
+        if (confirmPasswordIsValid) {
+            window.location.replace('index.html');
+        } else {
+            window.alert("Passwords do not match.");
+        }
+    } else {
+        // else, we need to add messages for everything that's borked
+        let redText = "<span style='color: red; font-weight:bold;'>";
+        let orangeText = "<span style='color: orange; font-weight:bold;'>";
+
+        if (!userNameIsValid) {
+            if (userName === "") {
+                addWarningMessage("Please enter " + redText + " a username </span>");
+            } else {
+                addWarningMessage("Please enter " + orangeText + " a valid username </span>");
+            }
+        }
+        if (!emailIsValid) {
+            if (email === "") {
+                addWarningMessage("Please enter " + redText + " an email address </span>");
+            } else {
+                addWarningMessage("Please enter " + orangeText + " a valid email address </span>");
+            }
+        }
+        if (!phoneNumberIsValid) {
+            if (phoneNumber === "") {
+                addWarningMessage("Please enter " + redText + " a phone number </span>");
+            } else {
+                addWarningMessage("Please enter " + orangeText + " a valid phone number </span>");
+            }
+        }
+        if (!passwordIsValid) {
+            if (password === "") {
+                addWarningMessage("Please enter " + redText + " a password </span>");
+            } else {
+                addWarningMessage("Please enter " + orangeText + " a valid password </span>");
+            }
+        }
+        if (!genderIsValid) {
+            addWarningMessage("Please select " + redText + " a gender </span>");
+        }
+        if (!birthdayIsValid) {
+            addWarningMessage("Please select " + redText + " a birthday </span>");
+        }
+        if (!musicIsValid) {
+            addWarningMessage("Please select " + redText + " at least one favorite music genre </span>");
+        }
+    }
+}
+
+/**
+ * Adds a warning message.
+ */
+function addWarningMessage(warningMessage) {
+    let warningHolder = document.getElementById('warnings-holder');
+    let warningMessageParagraph = document.createElement('p');
+
+    warningMessageParagraph.innerHTML = warningMessage;
+    warningHolder.appendChild(warningMessageParagraph);
+}
+
+/**
+ * Clears all warning messages.
+ */
+function clearWarnings() {
+    let warningHolder = document.getElementById('warnings-holder');
+
+    while (warningHolder.firstChild != null) {
+        warningHolder.removeChild(warningHolder.firstChild);
+    }
 }
